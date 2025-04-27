@@ -8,7 +8,6 @@ class Shape{
     }
     this.colour = colour;
   }
-
   get area(){
     throw new Error("Area implemented by child class");
   }
@@ -56,5 +55,24 @@ class Triangle extends Shape{
   }
 }
 
+class Circle extends Shape{
+  constructor(radius, colour){
+    super(colour);
+    this.radius = radius;
+  }
+  get area(){
+    return Math.PI * this.radius ** 2;
+  }
+  get circumference(){
+    return 2 * Math.PI * this.radius;
+  }
+  get perimeter(){
+    return this.circumference;
+  }
+  contain(){
+    const diameter = this.radius * 2;
+    return new Rectangle(diameter, diameter, this.colour);
+  }
+}
 
 }
