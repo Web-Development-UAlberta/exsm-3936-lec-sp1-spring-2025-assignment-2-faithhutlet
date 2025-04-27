@@ -41,6 +41,20 @@ class Rectangle extends Shape{
   }
 }
 
+class Triangle extends Shape{
+  constructor(base, height, colour){
+    super(colour);
+    this.base = base;
+    this.height = height;
+  }
+  get area(){
+    return (this.base * this.height) / 2;
+  }
+  get perimeter(){
+    const side = Math.max(this.base, this.height);
+    return new Rectangle(side, side, this.colour);
+  }
+}
 
 
 }
