@@ -1,14 +1,26 @@
-// eslint-disable-next-line no-unused-vars
-/* global output, input */
-// eslint-disable-next-line no-unused-vars
+
 async function main() {
-  // This is where the code you're actually experimenting with goes.
 
-  const prompt = "Please enter your name, or 'Exit' to quit: ";
-  let name = await input(prompt);
-
-  while (name !== "Exit") {
-    output("Hello, " + name + "!");
-    name = await input(prompt);
+class Shape{
+  constructor(colour){
+    if(new.target === Shape){
+      throw new Error("Cannot instantiate abstract class.");
+    }
+    this.colour = colour;
   }
+
+  get area(){
+    throw new Error("Area implemented by child class");
+  }
+  get perimeter(){
+    throw new Error("Perimeter implemented by child class");
+  }
+  contain(){
+    throw new Error("Contain implemented by child class");
+  }
+}
+
+
+
+
 }
