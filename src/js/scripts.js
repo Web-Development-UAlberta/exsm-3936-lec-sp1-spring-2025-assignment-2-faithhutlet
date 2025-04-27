@@ -20,6 +20,26 @@ class Shape{
   }
 }
 
+class Rectangle extends Shape{
+  constructor(length, width, colour){
+    super(colour);
+    this.length = length;
+    this.width = width;
+  }
+  get area(){
+    return this.length * this.width;
+  }
+  get perimeter(){
+    return 2* (this.length + this.width);
+  }
+  get isSquare(){
+    return this.length === this.width;
+  }
+  contain(){
+    const side = Math.max(this.length, this.width);
+    return new Rectangle(side, side, this.colour);
+  }
+}
 
 
 
