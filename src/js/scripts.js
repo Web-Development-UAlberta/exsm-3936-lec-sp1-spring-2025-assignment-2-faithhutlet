@@ -107,6 +107,16 @@ function promptShape(){
           const length = Number(lengthInput);
           const width = Number(widthInput);
           shapes.push(new Rectangle(length, width));
+          break;
+        }
+        case 2:{
+          output("Creating Triangle");
+          const baseInput = prompt(`Please enter base: `);
+          const heightInput = prompt(`Please enter height: `);
+          const base = Number(baseInput);
+          const height = Number(heightInput);
+          shapes.push(new Triangle(base, height));
+          break;
         }
       }
   }
