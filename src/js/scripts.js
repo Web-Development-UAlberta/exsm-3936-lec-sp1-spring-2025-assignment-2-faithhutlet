@@ -75,4 +75,40 @@ class Circle extends Shape{
   }
 }
 
+const shapes = [];
+
+function promptShape(){
+  while (true){
+    let choice = prompt(`Select a shape to create: 
+      1. Rectangle
+      2. Triangle
+      3. Circle
+      0. Exit
+      
+      Choose`);
+      if(choice === null) continue;
+      choice = parseInt(choice);
+      
+      if(choice === 0){
+        output("Goodbye!");
+        break;
+      }
+      
+      if(![1,2,3].includes(choice)){
+        output("Invalid selection, please try again.");
+        continue;
+      }
+
+      switch(choice){
+        case 1: {
+          output("Creating Rectangle");
+          const lengthInput = prompt(`Please enter length:`);
+          const widthInput = prompt(`Please enter width:`);
+          const length = Number(lengthInput);
+          const width = Number(widthInput);
+          shapes.push(new Rectangle(length, width));
+        }
+      }
+  }
+}
 }
