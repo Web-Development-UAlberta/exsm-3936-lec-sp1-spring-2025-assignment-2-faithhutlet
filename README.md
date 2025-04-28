@@ -1,0 +1,2 @@
+Module 2 Assignment
+In this assignment I generated classes to make up different shapes and learned how to extend child classes off of the parent class. This program uses classes, methods, loops and arrays to create a question program for the user. When the user creates their shape this will output information on their shape and a list of previous shapes made as well. 
