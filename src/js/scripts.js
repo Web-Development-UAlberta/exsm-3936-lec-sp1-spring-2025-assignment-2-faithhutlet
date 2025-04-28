@@ -109,7 +109,7 @@ function promptShape(){
           shapes.push(new Rectangle(length, width));
           break;
         }
-        case 2:{
+        case 2: {
           output("Creating Triangle");
           const baseInput = prompt(`Please enter base: `);
           const heightInput = prompt(`Please enter height: `);
@@ -117,6 +117,12 @@ function promptShape(){
           const height = Number(heightInput);
           shapes.push(new Triangle(base, height));
           break;
+        }
+        case 3: {
+          output("Creating circle");
+          const radiusInput = prompt(`Please enter radius: `);
+          const radius = Number(radiusInput)
+          shapes.push(new Circle(radius));
         }
       }
   }
