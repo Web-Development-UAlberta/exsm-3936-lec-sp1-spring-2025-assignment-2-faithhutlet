@@ -50,6 +50,10 @@ class Triangle extends Shape{
     return (this.base * this.height) / 2;
   }
   get perimeter(){
+    const side = Math.sqrt(Math.pow(this.height, 2) + Math.pow(this.base /2, 2));
+    return this.base +2 * side;
+  }
+  contain(){
     const side = Math.max(this.base, this.height);
     return new Rectangle(side, side, this.colour);
   }
@@ -71,60 +75,77 @@ class Circle extends Shape{
   }
   contain(){
     const diameter = this.radius * 2;
-    return new Rectangle(diameter, diameter, this.colour);
+    return new Circle(diameter, diameter, this.colour);
   }
 }
 
 const shapes = [];
 
-function promptShape(){
-  while (true){
-    let choice = prompt(`Select a shape to create: 
+function displayShapeList(){
+  output(`Shapes created: `);
+  shapes.forEach((shape, index) => {
+    output(`${index + 1}. ${shape.constructor.name}`);
+  });
+  const totalSquares = shapes.length;
+  output(`Total squares generated:${totalSquares}`);
+}
+
+while (true){
+const choice = parseInt(await input(`Select a shape to create: 
       1. Rectangle
       2. Triangle
       3. Circle
-      0. Exit
-      
-      Choose`);
-      if(choice === null) continue;
-      choice = parseInt(choice);
-      
+      0. Exit: `));
+
       if(choice === 0){
         output("Goodbye!");
         break;
-      }
-      
+    }
+
       if(![1,2,3].includes(choice)){
         output("Invalid selection, please try again.");
         continue;
-      }
+    }
+
+    let newShape = null;
 
       switch(choice){
         case 1: {
           output("Creating Rectangle");
-          const lengthInput = prompt(`Please enter length:`);
-          const widthInput = prompt(`Please enter width:`);
+          const lengthInput = await input(`Please enter length:`);
+          const widthInput = await input(`Please enter width:`);
           const length = Number(lengthInput);
           const width = Number(widthInput);
-          shapes.push(new Rectangle(length, width));
+          newShape = new Rectangle(length, width);
           break;
         }
         case 2: {
           output("Creating Triangle");
-          const baseInput = prompt(`Please enter base: `);
-          const heightInput = prompt(`Please enter height: `);
+          const baseInput = await input(`Please enter base: `);
+          const heightInput = await input(`Please enter height: `);
           const base = Number(baseInput);
           const height = Number(heightInput);
-          shapes.push(new Triangle(base, height));
+          newShape = new Triangle(base, height);
           break;
         }
         case 3: {
           output("Creating circle");
-          const radiusInput = prompt(`Please enter radius: `);
+          const radiusInput = await input(`Please enter radius: `);
           const radius = Number(radiusInput)
-          shapes.push(new Circle(radius));
+          newShape = new Circle(radius);
+          break;
         }
       }
-  }
-}
+    
+        if(newShape !== null){
+        shapes.push(newShape);
+        
+        output(`Shape created!`);
+        output(`Perimeter: ${newShape.perimeter.toFixed(2)}`);
+        output(`Area: ${newShape.area.toFixed(2)}`);
+        output(`Area of containing square: ${newShape.contain().area.toFixed(2)}`);
+
+        displayShapeList();
+      }
+    }
 }
